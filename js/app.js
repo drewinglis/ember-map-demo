@@ -14,8 +14,6 @@ App.MapView = Ember.View.extend({
   attributeBindings: ['style'],
   style:"width:50%; height:200px",
 
-  map:null,
-
   markers:[],
 
   didInsertElement: function() {
@@ -27,8 +25,6 @@ App.MapView = Ember.View.extend({
 
     var controller = this.get("controller");
     var map = new google.maps.Map(this.$().get(0),mapOptions);
-
-    this.set("map",map);
 
     var that = this;
 
@@ -59,8 +55,7 @@ App.MapView = Ember.View.extend({
       google.maps.event.addListener(marker, 'click', function() {
         controller.markerClick(markerObject);
       });
-
-      marker.setMap(that.get("map"));
+      marker.setMap(map);
     });
   }
 });
